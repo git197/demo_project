@@ -1,0 +1,38 @@
+server:
+  port: 8085
+spring:
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:mysql://localhost:3306/ksh?serverTimezone=UTC
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  http:
+    encoding:
+      force: true
+      charset: UTF-8
+  freemarker:
+    allow-request-override: false
+    cache: false
+    check-template-location: true
+    charset: UTF-8
+    content-type: text/html; charset=utf-8
+    expose-request-attributes: false
+    expose-session-attributes: false
+    expose-spring-macro-helpers: false
+    suffix: .html
+    template-loader-path: classpath:/templates
+    #mvc配置
+#  mvc:
+#    view:
+#      prefix: /static/
+#      suffix: .html
+#mybatis配置
+mybatis:
+  mapper-locations: classpath*:mapping/**/*.xml
+  configuration:
+    #开启驼峰映射
+    mapUnderscoreToCamelCase: true
+    log-prefix: sql.
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 控制台输出日志

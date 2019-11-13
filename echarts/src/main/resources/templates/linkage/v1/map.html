@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <!-- 全国344个市、区、州对应的数字编号 -->
+    <script type="text/javascript" src="../../js/linkage/v1/citymap.js"></script>
+</head>
+<body>
+<div id="main" style="width: 100%;height:800px;"></div>
+    <script type="text/javascript" src="../../common/jquery/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../../common/mapdata/china1.js"></script>
+    <script type="text/javascript" src="../../js/linkage/v1/msgData.js"></script>
+    <script type="text/javascript" src="../../common/echarts/echarts-4.4.0.js"></script>
+    <script type="text/javascript">
+        var charts = echarts.init(document.getElementById('main'));
+        
+        $.getJSON('../../common/apdata/china.json', function(data){
+            console.log(data)
+            //注册地图
+            echarts.registerMap('china', data);
+            //绘制地图
+            renderMap('china',data);
+        });
+        
+        var option = {
+            background : '#ccc',
+            title : {
+                text: 'Echarts3 中国地图下钻至县级',
+                subtext: '三级下钻',
+                left: 'center',
+                textStyle:{
+                    color: '#000',
+                    fontSize:20,
+                    fontWeight:'normal',
+                    fontFamily:"Microsoft YaHei"
+                },
+                subtextStyle:{
+                    color: '#fff',
+                    fontSize:13,
+                    fontWeight:'normal',
+                    fontFamily:"Microsoft YaHei"
+                }
+            },
+            
+            
+            animationDuration:1000,
+            animationEasing:'cubicOut',
+            animationDurationUpdate:1000
+             
+        };
+
+
+
+        function renderMap(map,data){
+            console.log(data)
+            option.series = [{
+                name: map,
+                type: 'map',
+                mapType: map,
+                showLegendSymbol: false,
+                nameMap:{
+                    'china':'中国'
+                },
+                showLegendSymbol: false, // 存在legend时显示
+                label: {
+                    normal: {
+                        show: true,
+                        color: '#05C3F9'
+                    },
+                    emphasis: {
+                        show: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        show : true,
+                        areaColor: '#031525',
+                        borderColor: '#3B5077',
+                    },
+                    emphasis: {
+                        areaColor: '#2B91B7'
+                    }
+                },
+                data:data
+            }];
+            //渲染地图
+            charts.setOption(option);
+        }
+    </script>
+</body>
+</html>

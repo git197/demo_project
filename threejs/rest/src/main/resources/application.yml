@@ -1,0 +1,10 @@
+server:
+  port: 8081
+spring:
+  datasource:
+    druid:
+      master:
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/ksh?serverTimezone=UTC
+        username: root
+        password: root

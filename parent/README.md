@@ -1,0 +1,2 @@
+# 启动类DataSourceAutoConfiguration.class
+如果配置文件没有指定数据源时需要加入如上配置项`参考echarts启动类`

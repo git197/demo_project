@@ -1,0 +1,1 @@
+const three_api_init = "http://192.168.1.118:8081/v1";
